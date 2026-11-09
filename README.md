@@ -128,12 +128,22 @@ flowchart TD
 
 ### Benchmark Summary Table
 
-| Model Architecture | Parameters | Epochs | Training Acc. | Validation Acc. *(Default Split)* | Held-Out Test Acc. *(True Split)* | Macro F1 | Weighted F1 | TFLite Size |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Legacy Baseline CNN** *(Original notebook)* | ~6.5M | 10 | 97.82% | 94.59% | *Not evaluated* | 0.9480 | 0.9490 | *N/A* |
-| **Improved Baseline CNN** *(BN + Dropout)* | ~4.2M | 25 | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` |
-| **MobileNetV2** *(Fine-Tuned)* | ~2.6M | 25+10 | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` |
-| **EfficientNetB0** *(Fine-Tuned)* | ~4.3M | 25+10 | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` | `[TODO: fill after running]` |
+| Model Architecture | Parameters (Trainable) | Memory (.keras) | Epochs | Training Acc. (Loss) | Validation Acc. (Loss) *(Default Split)* | Exploratory Test Acc. *(33 images)* | Held-Out Test Acc. *(True Split)* | Macro F1 *(Validation)* | Weighted F1 *(Validation)* |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Legacy Baseline CNN** *(Original notebook)* | 7,842,762 (7.84M) | 29.92 MB | 10 | **97.82%** (0.0783) | **94.59%** (0.2495) | **95.00%** | *Not Evaluated* | **0.9479** | **0.9465** |
+| **Improved Baseline CNN** *(BN + Dropout + On-the-fly Aug)* | 5,790,790 (5.78M) | 22.09 MB | 25 | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] |
+| **MobileNetV2** *(Top 30% Fine-Tuning)* | 2,600,806 (1.21M) | 9.92 MB | 25 + 10 | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] |
+| **EfficientNetB0** *(Top 30% Fine-Tuning)* | 4,103,369 (1.85M) | 15.65 MB | 25 + 10 | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] | [Pending Run] |
+
+### Published Literature Benchmarks on PlantVillage (38 Classes)
+
+| Study / Architecture | Input Resolution | Reported Validation Accuracy | Notes |
+| :--- | :---: | :---: | :--- |
+| **Mohanty et al. (2016)** - *AlexNet* | 256×256 | 99.27% | Random 80/20 partition (no leaf grouping) |
+| **Mohanty et al. (2016)** - *GoogLeNet* | 256×256 | 99.35% | Random 80/20 partition (no leaf grouping) |
+| **Too et al. (2019)** - *VGG-16* | 224×224 | 98.60% | Transfer learning on PlantVillage |
+| **Too et al. (2019)** - *DenseNet-121* | 224×224 | 99.81% | Evaluated on full dataset |
+| **This Repository (Legacy CNN)** | 128×128 | 94.59% | Single leaf, 10 epochs, 7.8M parameters |
 
 ### Legacy Training Convergence (from `training_hist.json`)
 ![Training vs Validation Accuracy](assets/Training%20vs%20Validation%20Accuracy.jpg)

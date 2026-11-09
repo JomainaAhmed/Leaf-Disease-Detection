@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Datasets and Large Data
+data/
+datasets/
+raw_data/
+*.zip
+*.tar.gz
+*.csv.gz
+
+# Trained Models and Weights
+*.keras
+*.h5
+*.tflite
+*.pb
+models/*.keras
+models/*.h5
+models/*.tflite
+!models/README.md
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
